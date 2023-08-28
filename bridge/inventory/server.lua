@@ -61,4 +61,33 @@ elseif GetResourceState('qb-inventory') == 'started' then
         local source = source
         Inventory.PlayerWeapons[source] = weaponData
     end)
+
+elseif GetResourceState('core_inventory') == 'started' then 
+    Inventory.PlayerWeapons = {}
+
+    Inventory.GetWeapon = function(source, name)
+        local data = Inventory.PlayerWeapons[source]       
+        if data then
+             return 1, data
+        else
+            return 0
+        end
+    end
+
+    Inventory.CreateWeaponData = function(source, data, weaponData)
+        for k,v in pairs(weaponData) do 
+            data[k] = v
+        end
+        return data
+    end
+
+    RegisterNetEvent('pickle_weaponthrowing:SetCurrentWeapon', function(weaponData, weaponInventory)
+        local source = source
+        if weaponData then
+            weaponData.defaultData = weaponData
+            weaponData.currentInventory = weaponInventory
+            weaponData.weapon = weaponData.name
+        end
+        Inventory.PlayerWeapons[source] = weaponData
+    end)
 end
