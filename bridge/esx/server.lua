@@ -43,9 +43,9 @@ function RemoveWeapon(source, data)
     local xPlayer = ESX.GetPlayerFromId(source)
 
     if useCoreInventory or Config.UsingCoreInventory then       
-        local result = xPlayer.removeInventoryItem(data.name, 1, data.currentInventory)
+        local result = xPlayer.removeInventoryItem(data.name, 1, nil, data.currentInventory)
         if result then
-            TriggerClientEvent('core_inventory:custom:handleWeaponChange', source, data.defaultData, data.currentInventory)
+            TriggerClientEvent('core_inventory:client:handleWeaponChange', source, data.defaultData, data.currentInventory)
         end
         return result
     else

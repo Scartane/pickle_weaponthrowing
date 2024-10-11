@@ -25,7 +25,7 @@ RegisterNetEvent(GetCurrentResourceName()..":showNotification", function(text)
 end)
 
 if GetResourceState('core_inventory') == 'started' then 
-    RegisterNetEvent('core_inventory:custom:handleWeapon', function(currentWeapon, currentWeaponData, currentWeaponInventory)
+    RegisterNetEvent('core_inventory:client:handleWeapon', function(currentWeapon, currentWeaponData, currentWeaponInventory)
         TriggerServerEvent("pickle_weaponthrowing:SetCurrentWeapon", currentWeaponData, currentWeaponInventory)
     end)
 end
